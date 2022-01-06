@@ -1,0 +1,83 @@
+---
+title: "Reci_firstyear"
+author: "Vishalakshi Arumugam"
+date: "5/23/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(DescTools)
+library(ResourceSelection)
+library(h2o)
+```
+
+Import the Dataset
+
+```{r}
+nij_train = read.csv("NIJ_s_Recidivism_Challenge_Training_Dataset.csv")
+
+```
+
+```{r}
+str(nij_train)
+```
+```{r}
+nij_train = nij_train %>% 
+            mutate_if(is.character,as.factor)
+```
+
+```{r}
+nij_train=nij_train %>% 
+          mutate_if(is.logical,as.factor)
+```
+
+```{r}
+str(nij_train)
+```
+
+```{r}
+train = as.h2o(nij_train,h2o.use.data.table=TRUE)
+```
+```{r}
+h2o.describe(train)
+```
+```{r}
+y= "Recidivism_Arrest_Year1"
+```
+```{r}
+x=setdiff(names(nij_train),c(y,"Recidivism_Within_3years","Recidivism_Arrest_Year2","Recidivism_Arrest_Year3","ID"))
+```
+```{r}
+aml=h2o.automl(y=y,
+               x=x,
+               training_frame = train,
+               project_name = "Recidivism-challenge",
+               max_models = 15)
+```
+```{r}
+lb=aml@leaderboard
+```
+
+```{r}
+print(lb,n=nrow(lb))
+```
+```{r}
+model_ids = as.data.frame(aml@leaderboard$model_id)[,1]
+se=h2o.getModel(grep("StackedEnsemble_AllModels",model_ids,value = TRUE)[1])
+metalearner= h2o.getModel(se@model$metalearner$name)
+```
+```{r}
+h2o.varimp(metalearner)
+```
+```{r}
+gbm =h2o.getModel(grep("GBM",model_ids,value = TRUE)[1])
+```
+```{r}
+h2o.varimp(gbm)
+```
+```{r}
+h2o.varimp_plot(gbm)
+```
+

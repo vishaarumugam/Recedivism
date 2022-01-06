@@ -1,0 +1,60 @@
+Gang_Affiliated
+Supervision_Level_First
+Prison_Offense
+
+
+Supervision_Level_First_High,
+Supervision_Level_First_Specialized
+Supervision_Level_First_Standard
+
+Prison_Offense_Drug
+Prison_Offense_Other
+Prison_Offense_Property
+Prison_Offense_Violent/Non-Sex
+Prison_Offense_Violent/Sex
+
+
+Gender_nan,Race_nan,Age_at_Release_nan,Gang_Affiliated_nan,Supervision_Level_First_nan,Education_Level_nan,Dependents_nan,Prison_Offense_nan,Prison_Years_nan,Prior_Arrest_Episodes_Felony_nan,Prior_Arrest_Episodes_Misd_nan,Prior_Arrest_Episodes_Violent_nan,Prior_Arrest_Episodes_Property_nan,Prior_Arrest_Episodes_Drug_nan,_v1_nan,Prior_Conviction_Episodes_Felony_nan,Prior_Conviction_Episodes_Misd_nan,Prior_Conviction_Episodes_Prop_nan,Prior_Conviction_Episodes_Drug_nan,Delinquency_Reports_nan,Program_Attendances_nan,Program_UnexcusedAbsences_nan,Residence_Changes_nan
+
+
+
+from sklearn.preprocessing import MinMaxScaler
+scaler = MinMaxScaler()
+x_train = pd.DataFrame(scaler.fit_transform(x_train), columns = x_train.columns)
+x_train.head()
+
+
+
+
+nij_train$Gender=as.factor(nij_train$Gender)
+nij_train$Race = as.factor(nij_train$Race)
+nij_train$Age_at_Release= as.factor(nij_train$Age_at_Release)
+nij_train$Gang_Affiliated=as.factor(nij_train$Gang_Affiliated)
+nij_train$Supervision_Risk_Score_First=as.factor(nij_train$Supervision_Risk_Score_First)
+nij_train$Supervision_Level_First= as.factor(nij_train$Supervision_Level_First)
+nij_train$Education_Level= as.factor(nij_train$Education_Level)
+nij_train$Dependents = as.factor(nij_train$Dependents)
+nij_train$Prison_Offense = as.factor(nij_train$Prison_Offense)
+nij_train$Prison_Years= as.factor(nij_train$Prison_Years)
+nij_train$Prior_Arrest_Episodes_Felony=as.factor(nij_train$Prior_Arrest_Episodes_Felony)
+nij_train$Prior_Arrest_Episodes_Misd = as.factor(nij_train$Prior_Arrest_Episodes_Misd)
+nij_train$Prior_Arrest_Episodes_Violent=as.factor(nij_train$Prior_Arrest_Episodes_Violent)
+nij_train$Prior_Arrest_Episodes_Property = as.factor(nij_train$Prior_Arrest_Episodes_Property)
+nij_train$Prior_Arrest_Episodes_Drug = as.factor(nij_train$Prior_Arrest_Episodes_Drug)
+nij_train$X_v1=as.factor(nij_train$X_v1)
+nij_train$Prior_Arrest_Episodes_DVCharges = as.factor(nij_train$Prior_Arrest_Episodes_DVCharges)
+nij_train$Prior_Arrest_Episodes_GunCharges=as.factor(nij_train$Prior_Arrest_Episodes_GunCharges)
+nij_train$Prior_Conviction_Episodes_Felony=as.factor(nij_train$Prior_Conviction_Episodes_Felony)
+nij_train$Prior_Conviction_Episodes_Misd= as.factor(nij_train$Prior_Conviction_Episodes_Misd)
+nij_train$Prior_Conviction_Episodes_Viol=as.factor(nij_train$Prior_Conviction_Episodes_Viol)
+nij_train$Prior_Conviction_Episodes_Prop = as.factor(nij_train$Prior_Conviction_Episodes_Prop)
+nij_train$Prior_Conviction_Episodes_Drug=as.factor(nij_train$Prior_Conviction_Episodes_Drug)
+nij_train$X_v2= as.factor(nij_train$X_v2)
+nij_train$X_v3= as.factor(nij_train$X_v3)
+nij_train$X_v4= as.factor(nij_train$X_v4)
+nij_train$Prior_Revocations_Parole= as.factor(nij_train$Prior_Revocations_Parole)
+nij_train$Prior_Revocations_Probation = as.factor(nij_train$Prior_Revocations_Probation)
+nij_train$Condition_MH_SA = as.factor(nij_train$Condition_MH_SA)
+nij_train$Condition_Cog_Ed = as.factor(nij_train$Condition_Cog_Ed)
+nij_train$Condition_Other=as.factor(nij_train$Condition_Other)
+nij_train$Recidivism_Arrest_Year1 = as.factor(nij_train$Recidivism_Arrest_Year1)
